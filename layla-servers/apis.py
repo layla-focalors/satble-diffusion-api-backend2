@@ -28,6 +28,22 @@ app = fastapi.FastAPI()
 def root():
     return {'message': 'Hello World'}
 
+@app.get("/download/user-content/{filename}")
+async def root(filename: str):
+    UPLOAD_DIR = "C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\user_content" 
+    return FileResponse(os.path.join(UPLOAD_DIR, f"{filename}"))
+
+@app.post("/upload/{user_id}/content")
+async def upload_photo(file: UploadFile, Request : fastapi.Request, user_id: str):
+    UPLOAD_DIR = "C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\user_content" 
+    
+    content = await file.read()
+    filename = f"{user_id}_{str(uuid.uuid4())}.jpg" 
+    with open(os.path.join(UPLOAD_DIR, filename), "wb") as fp:
+        fp.write(content)
+
+    return {"filename": filename}
+
 @app.get("/generate/{prompt}")
 def generate(prompt: str, Request: fastapi.Request):
     import uuid
@@ -77,6 +93,7 @@ async def generate_info(uuids: str):
     vector = FileResponse(f'{uuids}.png', media_type='image/png')
     print(uuids)
     return vector
+
 # uuid 기반 image searcer
 # example url : http://127.0.0.1:7865/generate/info/014fef84-19f5-4a0c-acbe-4dee49d9934e
 
