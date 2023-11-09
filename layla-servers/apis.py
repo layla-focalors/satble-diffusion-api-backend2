@@ -18,6 +18,7 @@ import uuid
 # & : prompts 구분
 # = : options 구분
 # steps= : steps 구분(스텝 수정 가능)
+# user-bat : --api 옵션 준 후 실행
 
 URL = "http://127.0.0.1:7860"
 
