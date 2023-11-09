@@ -62,11 +62,23 @@ def generate(prompt: str, Request: fastapi.Request):
     image.save(f'{uuids}.png')
     response2 = requests.post(url=f'{URL}/sdapi/v1/png-info', json=png_payload)
     
+    vector = FileResponse(f'{uuids}.png', media_type='image/png')
+    print(uuids)
+    
     # infomation
     # response : base64 image header
     # response2 : png info
     
-    return FileResponse(f'{uuids}.png', media_type='image/png')
+    return vector
+
+@app.get("/generate/info/{uuids}")
+async def generate_info(uuids: str):
+    os.chdir('C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\cache')
+    vector = FileResponse(f'{uuids}.png', media_type='image/png')
+    print(uuids)
+    return vector
+# uuid 기반 image searcer
+# example url : http://127.0.0.1:7865/generate/info/014fef84-19f5-4a0c-acbe-4dee49d9934e
 
 if __name__ == "__main__":
     uvicorn.run("apis:app", port=7865, reload=True)
