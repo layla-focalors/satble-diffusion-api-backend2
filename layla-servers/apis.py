@@ -28,6 +28,28 @@ app = fastapi.FastAPI()
 def root():
     return {'message': 'Hello World'}
 
+@app.post("/upload/imozi/{user_id}/{imozi_name}/{id}")
+async def upload_photo(file: UploadFile, Request : fastapi.Request, user_id: str, id: str, imozi_name: str):
+    UPLOAD_DIR = "C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\imozi" 
+    import os.path
+    os.chdir(UPLOAD_DIR)
+    if os.path.isdir(f'{user_id}'):
+        os.chdir(f'{UPLOAD_DIR}\\{user_id}')
+    else:
+        os.mkdir(f'{user_id}')
+        os.chdir(f'{UPLOAD_DIR}\\{user_id}')
+    
+    if os.path.isdir(f'{imozi_name}'):
+        return {"message": "이미 존재하는 이모지입니다."}
+        
+    content = await file.read()
+    filename = f"{user_id}_{imozi_name}_{id}.jpg" 
+    with open(os.path.join(UPLOAD_DIR, filename), "wb") as fp:
+        fp.write(content)
+
+    return {"filename": filename}
+
+
 @app.get("/download/user-content/{filename}")
 async def root(filename: str):
     UPLOAD_DIR = "C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\user_content" 
