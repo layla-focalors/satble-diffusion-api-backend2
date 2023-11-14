@@ -11,6 +11,7 @@ from fastapi.responses import FileResponse
 from PIL import Image, PngImagePlugin
 import os
 import uuid
+import translation
 
 # example url
 # http://127.0.0.1:7865/generate/theme=people&style=sea&model=maple&steps=5$beach&wind
@@ -24,9 +25,60 @@ URL = "http://127.0.0.1:7860"
 
 app = fastapi.FastAPI()
 
+@app.get('/translation/{domain}')
+async def translation(domain: str):
+    from transformers import pipeline
+    parser = domain.split('$')
+    src = str(parser[0])
+    dst = str(parser[1])
+    text = str(parser[2].split('=')[1])
+    if src == dst:
+        return {"message": f"{text}"}
+    if src == "ko" and dst == "vi":
+        src = 'ko'
+        dst = 'en'
+        task_name = f"translation_{src}_to_{dst}"
+        model_name = f"Helsinki-NLP/opus-mt-{src}-{dst}"
+        translator  = pipeline(task_name, model=model_name, tokenizer=model_name)
+        ust = translator(text)[0]['translation_text']
+        src = 'en'
+        dst = 'vi'
+        text = ust
+        task_name = f"translation_{src}_to_{dst}"
+        model_name = f"Helsinki-NLP/opus-mt-{src}-{dst}"
+        translator  = pipeline(task_name, model=model_name, tokenizer=model_name)
+        return {"message": f"{translator(text)[0]['translation_text']}"}
+    if src == "vi" and dst == "ko":
+        src = 'vi'
+        dst = 'en'
+        task_name = f"translation_{src}_to_{dst}"
+        model_name = f"Helsinki-NLP/opus-mt-{src}-{dst}"
+        translator  = pipeline(task_name, model=model_name, tokenizer=model_name)
+        ust = translator(text)[0]['translation_text']
+        print(ust)
+        src = 'en'
+        dst = 'ko'
+        text = ust
+        task_name = f"translation_{src}_to_{dst}"
+        # Helsinki-NLP/opus-mt-tc-big-en-ko
+        # model_name = f"Helsinki-NLP/opus-mt-tc-big-{src}-{dst}"
+        model_name = "Helsinki-NLP/opus-mt-tc-big-en-ko"
+        translatora  = pipeline(task_name, model=model_name, tokenizer=model_name)
+        return {"message": f"{translatora(text)[0]['translation_text']}"}
+    
+    task_name = f"translation_{src}_to_{dst}"
+    model_name = f"Helsinki-NLP/opus-mt-{src}-{dst}"
+    translator  = pipeline(task_name, model=model_name, tokenizer=model_name)
+    return {"message": f"{translator(text)[0]['translation_text']}"}
+
 @app.get('/test')
 def root():
     return {'message': 'Hello World'}
+
+@app.get("/download/imozi/{filename}")
+async def root(filename: str):
+    UPLOAD_DIR = "C:\\Users\\user\\Desktop\\stable-diffusion-webui\\layla-servers\\imozi" 
+    return FileResponse(os.path.join(UPLOAD_DIR, f"{filename}"))
 
 @app.post("/upload/imozi/{user_id}/{imozi_name}/{id}")
 async def upload_photo(file: UploadFile, Request : fastapi.Request, user_id: str, id: str, imozi_name: str):
