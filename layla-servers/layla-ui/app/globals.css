@@ -1,27 +1,149 @@
+@import url(https://db.onlinewebfonts.com/c/c7fb97e690c1473593032429cb30b5c5?family=Separat+Regular);
+
+@font-face {
+  font-family: "laylaSquare";
+  font-style: normal;
+  src: url('/fonts/laylaSquare.ttf') format('ttf');
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+.laylaSquare {
+  font-family: "laylaSquare";
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.main {
+  width: 100vw;
+  height: 100vh;
+  /* background-color: #f09605; */
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  font-family: "Separat Regular";
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.halo {
+  font-family: "Separat Regular";
+}
+
+.apps {
+  /* main border by home */
+  width: 1200px;
+  height: auto;
+  /* background-color: #007aff; */
+}
+
+.nav {
+  width: 100%;
+  height: 100px;
+  /* background-color: #f09605; */
+  display: flex;
+  justify-content: left;
+  align-items: center;
+}
+
+.mlogo {
+  margin-left: 35px;
+  width: auto;
+  height: 30px;
+}
+
+.host {
+  width: 100vw;
+  height: auto;
+  background-color: #007aff;
+  -webkit-text-size-adjust: 100%;
+  tab-size: 4;
+  font-feature-settings: normal;
+  --swiper-theme-color: #007aff;
+  --element-el-10: #fff;
+  --element-el-10-rgb: 255,255,255;
+  --element-el-15: #f6f6f6;
+  --element-el-20: #eee;
+  --element-el-30: #eee;
+  --element-el-35: #e0e0e0;
+  --element-el-40: #999;
+  --element-el-50: #7a7a7a;
+  --element-el-60: #222;
+  --element-el-70: #000;
+  --element-el-bc: #f09605;
+  --bg-a-10: #fff;
+  --bg-a-20: #f7f7f7;
+  --bg-a-20-rgb: 247,247,247;
+  --bg-b-10: #eee;
+  --bg-b-20: #fff;
+  --bg-a-10-0: hsla(0,0%,100%,0);
+  --bg-b-20-0: hsla(0,0%,100%,0);
+  --line-10: rgba(0,0,0,.05);
+  --line-20: rgba(0,0,0,.1);
+  --line-30: rgba(0,0,0,.25);
+  --sp-btnbase: #f3f3f3;
+  --sp-skeleton: hsla(0,0%,80%,.15);
+  --sp-bg-blur: hsla(0,0%,97%,.6);
+  --sp-bg-first: rgba(0,0,0,.05);
+  --element-el-70-15: rgba(0,0,0,.15);
+  --element-el-60-30: rgba(34,34,34,.3);
+  --element-el-20-30: hsla(0,0%,93%,.3);
+  --element-el-20-rgb: 238,238,238;
+  --viewer-auto: hsla(0,0%,100%,.3);
+  --epub-hyperlink: #54beff;
+  border: 0 solid #e5e7eb;
+  --tw-border-spacing-x: 0;
+  --tw-border-spacing-y: 0;
+  --tw-translate-x: 0;
+  --tw-translate-y: 0;
+  --tw-rotate: 0;
+  --tw-skew-x: 0;
+  --tw-skew-y: 0;
+  --tw-scale-x: 1;
+  --tw-scale-y: 1;
+  --tw-pan-x: ;
+  --tw-pan-y: ;
+  --tw-pinch-zoom: ;
+  --tw-scroll-snap-strictness: proximity;
+  --tw-ordinal: ;
+  --tw-slashed-zero: ;
+  --tw-numeric-figure: ;
+  --tw-numeric-spacing: ;
+  --tw-numeric-fraction: ;
+  --tw-ring-inset: ;
+  --tw-ring-offset-width: 0px;
+  --tw-ring-offset-color: #fff;
+  --tw-ring-color: rgba(59,130,246,.5);
+  --tw-ring-offset-shadow: 0 0 #0000;
+  --tw-ring-shadow: 0 0 #0000;
+  --tw-shadow: 0 0 #0000;
+  --tw-shadow-colored: 0 0 #0000;
+  --tw-blur: ;
+  --tw-brightness: ;
+  --tw-contrast: ;
+  --tw-grayscale: ;
+  --tw-hue-rotate: ;
+  --tw-invert: ;
+  --tw-saturate: ;
+  --tw-sepia: ;
+  --tw-drop-shadow: ;
+  --tw-backdrop-blur: ;
+  --tw-backdrop-brightness: ;
+  --tw-backdrop-contrast: ;
+  --tw-backdrop-grayscale: ;
+  --tw-backdrop-hue-rotate: ;
+  --tw-backdrop-invert: ;
+  --tw-backdrop-opacity: ;
+  --tw-backdrop-saturate: ;
+  --tw-backdrop-sepia: ;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  font-family: Pretendard Variable,Pretendard,-apple-system,BlinkMacSystemFont,system-ui,Roboto,Helvetica Neue,Segoe UI,Apple SD Gothic Neo,Noto Sans KR,Malgun Gothic,sans-serif!important;
+  line-height: 1.4;
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  width: 75rem;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
 }
