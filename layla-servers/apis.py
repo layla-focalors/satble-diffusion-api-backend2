@@ -21,9 +21,33 @@ import translation
 # steps= : steps 구분(스텝 수정 가능)
 # user-bat : --api 옵션 준 후 실행
 
+# gpt translation
+# parser.add_argument("--text", type=str, required=True)
+#     parser.add_argument("--quiet", type=bool, default=False)
+#     parser.add_argument("--nsamples", type=int, default=1)
+#     parser.add_argument('--unconditional', action='store_true', help='If true, unconditional generation.')
+#     parser.add_argument("--batch_size", type=int, default=-1)
+#     parser.add_argument("--length", type=int, default=-1)
+#     parser.add_argument("--temperature", type=int, default=0.7)
+#     parser.add_argument("--top_k", type=int, default=40)
+
 URL = "http://127.0.0.1:7860"
 
 app = fastapi.FastAPI()
+
+# http://127.0.0.1:7865/v1/translation/ko$vi$text=text$temperature=0.7$batch_size=1
+
+@app.get('/v1/translation/{domain}')
+async def translation(domain: str):
+    parser = domain.split('$')
+    src = str(parser[0])
+    dst = str(parser[1])
+    text = str(parser[2].split('=')[1])
+    tempreatrue = str(parser[3].split('=')[1])
+    batch_size = str(parser[4].split('=')[1])
+    print(src, dst, text, tempreatrue, batch_size)
+
+# http://127.0.0.1:7865/translation/ko$vi$text=%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%20%EC%97%94%EC%A7%80%EB%8B%88%EC%96%B4%EC%95%BC?
 
 @app.get('/translation/{domain}')
 async def translation(domain: str):
