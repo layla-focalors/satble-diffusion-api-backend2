@@ -49,7 +49,7 @@ body::-webkit-scrollbar {
   margin-left: 175px;
   width: 84%;
   height: 100000px;
-  background-color: #f09605 !important;
+  /* background-color: #f09605 !important; */
 }
 
 .c-layer {
