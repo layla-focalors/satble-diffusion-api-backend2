@@ -1,5 +1,5 @@
 export default function SLIDE(){
     return (
-        <div>SLIDE</div>
+        <div>Account</div>
     )
 }

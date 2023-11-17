@@ -9,9 +9,15 @@ export default function BTNN(){
             <Link href={'/sns/ko'}>
                 <CiYoutube className="ml-5"/>
             </Link>
-            <CiPlay1 className="ml-5"/>
-            <CiFolderOn className="ml-5" />
-            <CiUser className="ml-5" />
+            <Link href={'/play/ko'}>
+                <CiPlay1 className="ml-5"/>
+            </Link>
+            <Link href={'/visit/desktop/ko/myview'}>
+                <CiFolderOn className="ml-5" />
+            </Link>
+            <Link href={'/account/ko'}>
+                <CiUser className="ml-5" />
+            </Link>
         </div>
     )
 }

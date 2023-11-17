@@ -56,7 +56,38 @@ body::-webkit-scrollbar {
   margin-top: 40px;
   width: 100%;
   height: 100%;
+  /* dev */
   background-color: aquamarine;
+}
+
+.c-display {
+  /* background-color: #000; */
+  width: 100%;
+  height: 800px;
+}
+
+.c-d-side {
+  width: 100%;
+  height: 60%;
+  background-color: #54beff;
+}
+
+.c-d-side-s {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  background-color: #007aff;
+}
+
+.c-d-s-img {
+  border-radius: 15px;
+  background-color: #000;
+  width: 20%;
+  margin-left: 2px;
+  margin-right: 2px;
+  height: 100%;
 }
 
 .halo {
