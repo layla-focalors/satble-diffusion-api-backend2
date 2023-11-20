@@ -4,9 +4,15 @@ import { NAVSR } from "./navSR"
 import { SEC } from "./search"
 import { BTNN } from "./btn"
 import { CNAV } from "./navx/cnav"
+import { XLS } from './session/8xloader'
+import { BDG } from "./session/bigwindow"
 
 export default function Reg(){
     let ground_image = ['blue', 'pink', 'black', 'red', 'yellow', 'orange']
+    let keyiq = "인기 소설"
+    let pages = ['추천 신화 웹소설', '은월 장편소설']
+    // total 11
+    let page_content = ['지금 플레이 중', '추천 로맨스', '추천 드라마', '웹툰 Top 100', '웹소설 Top 100', '이벤트 세션']
     return (
         <div className="main" style={{}}>
             <div className="apps" style={{}}>
@@ -34,8 +40,11 @@ export default function Reg(){
                                                     <div className="textarea">
 
                                                     </div>
-                                                    <div className="bottom-text">
-
+                                                    <div>
+                                                        <div className="bottom-text" style={{color:"white", textAlign:"center"}}>
+                                                            어떻게 하면?
+                                                        </div>
+                                                        <div style={{textAlign:"center", color:"white"}}>12</div>
                                                     </div>
                                                 </div>
                                             )
@@ -43,6 +52,20 @@ export default function Reg(){
                                     }
                                     {/* sidebar1 */}
                                 </div>
+                                <XLS key="h" core={keyiq}></XLS>
+                                <BDG page={pages[0]}></BDG>
+                                <div style={{width:"100%", height:"100px"}}></div>
+                                <BDG page={pages[1]}></BDG>
+                                {
+                                    page_content.map((item, index)=>{
+                                        return (
+                                            <>
+                                                <div style={{width:"100%", height:"100px"}}></div>
+                                                <BDG page={page_content[index]}></BDG>
+                                            </>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>
